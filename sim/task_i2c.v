@@ -1,4 +1,4 @@
-parameter   SlvID           = 7'b111_0011;
+parameter   SlvID           = 7'b111_0111;
 
 parameter   WR              = 1'b0;
 parameter   RD              = 1'b1;
