@@ -161,14 +161,14 @@ assign SDAo = !drive_ack & Tx_out;
 // I2C start/stop event detection
 assign rst_n_s = rst_n & SCL_din;
 always@(posedge SDA_inv or negedge rst_n_s)
-    if(rst_n_s)
+    if(~rst_n_s)
         detect_s <= 1'b0;
     else
         detect_s <= SCL_din;
 
 assign rst_n_p = rst_n & SCL_din & ~detect_s;
 always@(posedge SDA or negedge rst_n_p)
-    if(rst_n_p)
+    if(~rst_n_p)
         detect_p <= 1'b0;
     else
         detect_p <= SCL_din;
@@ -176,7 +176,7 @@ always@(posedge SDA or negedge rst_n_p)
 // received data
 always @(posedge SCL or negedge rst_n)
 begin
-    if(!rst_n)
+    if(~rst_n)
         rec_data[7:0] <= 8'h00;
     else
         if(bit_cnt[3])

@@ -24,8 +24,6 @@ wire			SDAo;			// From UI2CCTL of I2CCtl.v
 // End of automatics
 wire [7:0]      xmit_data;
 
-assign  xmit_data = 8'h5A;
-
 I2CCtl UI2CCTL(
 /*AUTOINST*/
 	       // Outputs
@@ -68,8 +66,19 @@ Clock_Central UClock_Central(
 			     .SDA		(SDA),
 			     .SCL_inv		(SCL_inv),
 			     .SDA_inv		(SDA_inv),
+			     .store_data	(store_data),
 			     // Inputs
+                .rst_n          (rst_n),
 			     .SDA_In		(SDA_In),
-			     .SCL_In		(SCL_In));
+			     .SCL_In		(SCL_In),  
+			     .D_VAL  	    (D_VAL));
+
+regbank Uregbank(
+    .store_data     (store_data),
+    .rst_n          (rst_n),
+    .regbank_addr   (ADDR[6:0]),
+    .regbank_wrdata (REC_D[7:0]),
+    .regbank_rddata (xmit_data[7:0])
+);
 
 endmodule
