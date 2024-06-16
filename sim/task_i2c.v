@@ -88,8 +88,8 @@ endtask
 task Stop;
 begin
     #(Ttr_dat)          SDA_host = 0;
-    #(Tlow-Ttr_dat)     SDA_host = 1;
-    #(Tsu_stop)         SCL_host = 1;
+    #(Tlow-Ttr_dat)     SCL_host = 1;
+    #(Tsu_stop)         SDA_host = 1;
 end
 endtask
 

@@ -43,6 +43,26 @@ initial begin
     Rd_1Byte(8'd5);
     Rd_1Byte(8'd6);
     Rd_1Byte(8'd7);
+    Wr_1Byte(8'd0, 8'd8);
+    Wr_1Byte(8'd1, 8'd9);
+    Wr_1Byte(8'd2, 8'd10);
+    Wr_1Byte(8'd3, 8'd11);
+    Wr_1Byte(8'd4, 8'd12);
+    Wr_1Byte(8'd5, 8'd13);
+    Wr_1Byte(8'd6, 8'd14);
+    Wr_1Byte(8'd7, 8'd15);
+    Rd_1Byte(8'd0);
+    Rd_1Byte(8'd1);
+    Rd_1Byte(8'd2);
+    Rd_1Byte(8'd3);
+    Rd_1Byte(8'd4);
+    Rd_1Byte(8'd5);
+    Rd_1Byte(8'd6);
+    Rd_1Byte(8'd7);
+    Start;
+    Stop;
+    Start;
+    Stop;
     #100;
     $finish;
 end
