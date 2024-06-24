@@ -1,7 +1,7 @@
 module I2CCtl(
 /*AUTOARG*/
    // Outputs
-   SDAo, ADDR, REC_D, D_VAL,
+   SDAo, ADDR, REC_D, D_VAL, sm,
    // Inputs
    SCL, SDA, SCL_inv, SDA_inv, SCL_din, SDA_din, rst_n, xmit_data
    );
@@ -19,6 +19,7 @@ output          SDAo;
 output  [6:0]   ADDR;
 output  [7:0]   REC_D;
 output          D_VAL;
+output  [4:0]   sm;
 
 parameter SM_IDLE       = 0 , St_SM_IDLE       = 5'b0_0001;
 parameter SM_READ       = 1 , St_SM_READ       = 5'b0_0010;

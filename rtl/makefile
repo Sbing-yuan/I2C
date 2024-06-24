@@ -10,3 +10,5 @@ GTK:
 VM:
 	xemacs --batch $(file) -f verilog-auto-save-compile
 
+RM:
+	rm *~
