@@ -46,8 +46,10 @@ wire [6:0]		ADDR;			// From UI2CCTL of I2CCtl.v
 wire			D_VAL;			// From UI2CCTL of I2CCtl.v
 wire [7:0]		REC_D;			// From UI2CCTL of I2CCtl.v
 wire			SCL;			// From UClock_Central of Clock_Central.v
+wire			SCL_Deg;		// From UDeGlitch_TOP of DeGlitch_TOP.v
 wire			SCL_inv;		// From UClock_Central of Clock_Central.v
 wire			SDA;			// From UClock_Central of Clock_Central.v
+wire			SDA_Deg;		// From UDeGlitch_TOP of DeGlitch_TOP.v
 wire			SDA_inv;		// From UClock_Central of Clock_Central.v
 wire			SDAo;			// From UI2CCTL of I2CCtl.v
 wire [4:0]		sm;			// From UI2CCTL of I2CCtl.v
@@ -71,8 +73,8 @@ wire			D4_sel;			// From Useg7 of seg7.v
 `endif
 
 I2CCtl UI2CCTL(
-	       .SCL_din			(SCL_In),
-	       .SDA_din			(SDA_In),
+	       .SCL_din			(SCL_Deg),
+	       .SDA_din			(SDA_Deg),
 /*AUTOINST*/
 	       // Outputs
 	       .SDAo			(SDAo),
@@ -106,6 +108,22 @@ GPIO SCL_GPIO(
 	      .Out			(1'b0),
 	      .OE			(1'b0));
 
+DeGlitch_TOP UDeGlitch_TOP(
+/*AUTOINST*/
+			   // Outputs
+			   .SDA_Deg		(SDA_Deg),
+			   .SCL_Deg		(SCL_Deg),
+			   // Inputs
+			   .SDA_In		(SDA_In),
+			   .SCL_In		(SCL_In),
+			   .rst_n		(rst_n),
+			   .DS_SDA		(1'b1),
+			   .BYP_SDA_FF		(1'b0),
+			   .BYP_SDA_FB		(1'b0),
+			   .DS_SCL		(1'b1),
+			   .BYP_SCL_FF		(1'b0),
+			   .BYP_SCL_FB		(1'b0));
+
 Clock_Central UClock_Central(
 /*AUTOINST*/
 			     // Outputs
@@ -115,8 +133,8 @@ Clock_Central UClock_Central(
 			     .SDA_inv		(SDA_inv),
 			     .store_data	(store_data),
 			     // Inputs
-			     .SDA_In		(SDA_In),
-			     .SCL_In		(SCL_In),
+			     .SDA_In		(SDA_Deg),
+			     .SCL_In		(SCL_Deg),
 			     .D_VAL		(D_VAL),
 			     .rst_n		(rst_n));
 
