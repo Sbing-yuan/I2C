@@ -1,5 +1,6 @@
 `timescale 1ns/1ps
 `define VCDDUMP
+`define I2C_GLT
 
 module TB();
 

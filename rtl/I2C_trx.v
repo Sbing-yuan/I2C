@@ -117,10 +117,10 @@ DeGlitch_TOP UDeGlitch_TOP(
 			   .SDA_In		(SDA_In),
 			   .SCL_In		(SCL_In),
 			   .rst_n		(rst_n),
-			   .DS_SDA		(1'b1),
+			   .DS_SDA		(1'b0),
 			   .BYP_SDA_FF		(1'b0),
 			   .BYP_SDA_FB		(1'b0),
-			   .DS_SCL		(1'b1),
+			   .DS_SCL		(1'b0),
 			   .BYP_SCL_FF		(1'b0),
 			   .BYP_SCL_FB		(1'b0));
 

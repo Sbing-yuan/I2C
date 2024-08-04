@@ -74,6 +74,27 @@ initial begin
     SCL_host = 1;
 end
 
+`ifdef I2C_GLT
+initial begin
+    fork
+        forever begin
+            @(negedge SCL_host);
+            #(Tbc) force Pad_SCL = 1;
+            #(Tbc) force Pad_SCL = 0;
+            #(Tbc) force Pad_SCL = 1;
+            #(Tbc) force Pad_SCL = 0;
+        end
+        forever begin
+            @(posedge SCL_host);
+            #(Tbc) force Pad_SCL = 0;
+            #(Tbc) force Pad_SCL = 1;
+            #(Tbc) force Pad_SCL = 0;
+            #(Tbc) force Pad_SCL = 1;
+        end
+    join
+end
+`endif
+
 //========================================
 task Start;
 begin
