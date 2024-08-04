@@ -13,15 +13,15 @@ input   SB;
 
 output  OUT;
 
-lcell U0(.in(IN)  , .out(SD1));
-lcell U1(.in(SD1) , .out(SD2));
-lcell U2(.in(SD2) , .out(SD3));
-lcell U3(.in(SD3) , .out(SD4));
-lcell U4(.in(SD4) , .out(SD5));
-lcell U5(.in(SD5) , .out(SD6));
-lcell U6(.in(SD6) , .out(SD7));
-lcell U7(.in(SD7) , .out(SD8));
-lcell U8(.in(SD8) , .out(SD9));
+lcell U0/* synthesis keep */(.in(IN)  , .out(SD1));
+lcell U1/* synthesis keep */(.in(SD1) , .out(SD2));
+lcell U2/* synthesis keep */(.in(SD2) , .out(SD3));
+lcell U3/* synthesis keep */(.in(SD3) , .out(SD4));
+lcell U4/* synthesis keep */(.in(SD4) , .out(SD5));
+lcell U5/* synthesis keep */(.in(SD5) , .out(SD6));
+lcell U6/* synthesis keep */(.in(SD6) , .out(SD7));
+lcell U7/* synthesis keep */(.in(SD7) , .out(SD8));
+lcell U8/* synthesis keep */(.in(SD8) , .out(SD9));
 
 DLY_chain Uchain0(.IN(SD9), .D80(D80));
 DLY_chain Uchain1(.IN(D80), .D80(D160));

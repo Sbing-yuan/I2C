@@ -13,6 +13,8 @@ module I2C_trx(
     D2_sel,
     D3_sel,
     D4_sel,
+    SCL_Deg,
+    SDA_Deg,
 `endif
 /*AUTOARG*/
    // Inouts
@@ -38,6 +40,8 @@ output  D1_sel;
 output  D2_sel;
 output  D3_sel;
 output  D4_sel;
+output  SCL_Deg;
+output  SDA_Deg;
 `endif
 
 /*AUTOWIRE*/
