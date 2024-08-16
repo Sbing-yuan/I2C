@@ -1,3 +1,4 @@
+`define USE_INV
 module DeGlitch_FF(
     IN,
     OUT,
@@ -23,8 +24,19 @@ lcell U6/* synthesis keep */(.in(SD6) , .out(SD7));
 lcell U7/* synthesis keep */(.in(SD7) , .out(SD8));
 lcell U8/* synthesis keep */(.in(SD8) , .out(SD9));
 
+`ifdef USE_INV
+DLY_chain_inv Uchain0 (.IN(SD9),  .D39(D39));
+DLY_chain_inv Uchain1 (.IN(D39),  .D39(D78));
+INV  INV0             (.in(D78)  ,.out(D79));
+INV  INV1             (.in(D79)  ,.out(D80));
+DLY_chain_inv Uchain2 (.IN(D80),  .D39(D119));
+DLY_chain_inv Uchain3 (.IN(D119), .D39(D158));
+INV  INV2             (.in(D158) ,.out(D159));
+INV  INV3             (.in(D159) ,.out(D160));
+`else
 DLY_chain Uchain0(.IN(SD9), .D80(D80));
 DLY_chain Uchain1(.IN(D80), .D80(D160));
+`endif
 
 assign D_sel = DS ? D80 : D160;
 
